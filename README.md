@@ -1,13 +1,10 @@
 # IoT based Home Automation System
 
-Home Automation System - IoT-based Smart Control
 Overview
-This project focuses on developing a smart home automation system that uses IoT (Internet of Things) technology to monitor environmental parameters such as room temperature and light levels. It automatically controls appliances like fans and lights to optimize energy usage and enhance comfort.
 
-The system provides remote access to users through a web-based interface, where they can control devices, monitor data, and receive notifications.
+This project focuses on developing a smart home automation system that uses IoT (Internet of Things) technology to monitor environmental parameters such as room temperature and light levels. It automatically controls appliances like fans and lights to optimize energy usage and enhance comfort. The system provides remote access to users through a web-based interface, where they can control devices, monitor data, and receive notifications.
 
 Objectives
-The objectives of this project are as follows:
 
 Monitor Room Temperature: Use a temperature sensor (DHT22) to track the room's temperature.
 Fan Control: Automatically adjust the fan's speed based on the room's temperature. (Controlled on the manual user inputs)

@@ -125,7 +125,6 @@ The system comprises:
 ---
 
 ## Node-RED Dashboard 🖥️
-![Node-RED Dashboard](https://via.placeholder.com/800x400.png?text=Node-RED+Dashboard+Preview)
 
 - **Temperature & Humidity**: Real-time graphs and data.
 - **Light Levels**: Current ambient light intensity.

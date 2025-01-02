@@ -1,71 +1,146 @@
-# IoT based Home Automation System
+# 🌟 IoT-Based Home Automation System
 
-Overview
+![IoT](https://img.shields.io/badge/IoT-Enabled-blue) ![Platform](https://img.shields.io/badge/Platform-Node--RED-red) ![Microcontroller](https://img.shields.io/badge/Microcontroller-ESP32-orange) ![Sensors](https://img.shields.io/badge/Sensors-DHT22%2C%20BH1750-green)
 
-This project focuses on developing a smart home automation system that uses IoT (Internet of Things) technology to monitor environmental parameters such as room temperature and light levels. It automatically controls appliances like fans and lights to optimize energy usage and enhance comfort. The system provides remote access to users through a web-based interface, where they can control devices, monitor data, and receive notifications.
+## Overview 📖
+This project focuses on building a **smart home automation system** using **IoT technology** to monitor and control:
 
-Objectives
+- **Room Temperature**: Automatically or manually control fan speed based on temperature.
+- **Light Intensity**: Adjust the brightness of lights based on ambient light levels.
 
-Monitor Room Temperature: Use a temperature sensor (DHT22) to track the room's temperature.
-Fan Control: Automatically adjust the fan's speed based on the room's temperature. (Controlled on the manual user inputs)
-Light Control: Adjust the brightness of the bulb based on ambient light levels detected by a light sensor. (Controlled on the manual user inputs)
-Remote Control: Enable remote access to the system via an IoT platform for real-time monitoring and control.
-Real-Time Notifications: Send notifications when the room temperature or light levels exceed predefined thresholds.
+The system offers a **web-based interface** for remote monitoring and control while also sending **real-time notifications** for predefined thresholds.
 
-System Architecture
-The system architecture includes various components that communicate via IoT protocols. The central control is managed by an ESP32 microcontroller, which connects wirelessly to a web dashboard (Node-RED). The sensors collect environmental data, and actuators (relays) control the fan and light based on that data.
+---
 
-Components:
-ESP32 Microcontroller: Core component responsible for communication and control.
-Sensors:
-DHT22 / AM2302 Digital Temperature And Humidity Sensor Module (MD0229) : Measures temperature and humidity
-BH1750FVI Digital Light Intensity Sensor Module 3-5V (MD0250): Measures ambient light levels.
-Optimus 4-Channel AC Dimmer Module 3.3/5VDC 230VAC (OP0137): Used for controlling the light and fan, switching them on/off as needed.
-Power Supply: Provides 5V DC for the microcontroller and sensors.
-Node-RED Dashboard: Web-based interface for monitoring and control.
+## Objectives 🎯
 
-Working Principle
-The ESP32 microcontroller interfaces with sensors to monitor environmental conditions with WIFI(temperature and light).
-Based on sensor data, the microcontroller controls devices such as fans and bulbs through relays.
-The user can interact with the system via a web interface, making real-time adjustments and receiving notifications about the room’s conditions.
-Additionally Aruino Uno board is used to controlled the user inputs to control the light intensity level.
+- **Monitor Room Temperature**: Track the temperature using the **DHT22 sensor**.
+- **Fan Control**: Adjust fan speed manually through user inputs.
+- **Light Control**: Manually control brightness using ambient light data from the **BH1750 sensor**.
+- **Remote Access**: Control and monitor devices via an IoT platform.
+- **Real-Time Notifications**: Notify users when thresholds for temperature or light levels are exceeded.
 
-Components and Communication Protocols
+---
 
-Hardware Components:
-Microcontroller: ESP32 for sensor and device control.
+## System Architecture 🏗️
+The system comprises:
 
-Sensors:
-DHT22: For temperature and humidity readings.
-BH1750FVI: For light intensity measurements.
+- **ESP32 Microcontroller**: Handles communication, control, and data processing.
+- **Sensors**: Monitors environmental parameters.
+- **Actuators**: Controls appliances like fans and lights.
+- **Node-RED Dashboard**: Provides a web interface for monitoring and control.
+- **Arduino Uno**: Manages manual user inputs for light intensity control.
 
-Actuators: 
-Optimus 4-Channel AC Dimmer Module 3.3/5VDC 230VAC (OP0137)  for controlling the fan and bulb.
+### Components
 
-Software Components:
-Arduino IDE: For programming the ESP32­WROOM­32 micro controller chip.
-MQTT Protocol: For real-time communication between sensors, microcontroller, and the IoT platform.
-IoT Platform: Adafruit IO or Blynk for remote control and data visualization.
+| **Hardware**         | **Functionality**                                          |
+|----------------------|----------------------------------------------------------|
+| ESP32               | Core microcontroller for sensor and device control.       |
+| DHT22               | Measures temperature and humidity.                       |
+| BH1750FVI           | Measures ambient light levels.                           |
+| Optimus AC Dimmer   | Controls the fan speed and bulb brightness.              |
+| Power Supply        | Provides 5V DC for components.                           |
 
-System Design and Functionality
-1. Temperature and Fan Control:
-The DHT22 sensor measures the room’s temperature.
-If the temperature exceeds a preset threshold, the system automatically send a notification to the user. Then the user can change the fan's speed manually. Also the user can see the temperature and humidity levels using the Node-Red dashboard.
-PWM (Pulse Width Modulation) is used for controlling the fan’s speed proportionally based on the temperature.
+| **Software**          | **Purpose**                                              |
+|----------------------|----------------------------------------------------------|
+| Arduino IDE         | Programming the ESP32.                                   |
+| Node-RED Dashboard  | Web-based interface for monitoring and control.          |
+| MQTT Protocol       | Real-time communication between devices.                 |
+| IoT Platform        | Data visualization and remote control.                   |
 
-3. Light Control:
-The BH1750FVI sensor measures ambient light levels.
-If the light intensity drops below a specific threshold, the system automatically automatically send a notification to the user. Then the user can change the brightness of the bulb manually. Also the user can see light levels of the environment using the Node-Red dashboard. PWM is used to control the brightness level using an Arduino Uno board.
+---
 
-5. IoT Communication:
-The system uses MQTT protocol to communicate sensor data and control commands between devices and the IoT platform.
-The ESP32 subscribes to relevant topics, allowing it to adjust devices based on real-time inputs from users or sensors.
-MQTT topics are used for publishing sensor data (temperature, light levels) and receiving commands from the web dashboard.
-The microcontroller subscribes to topics related to fan and light control to implement the user's commands.
+## Working Principle ⚙️
 
-How to Use
-Set Up Hardware: Connect the ESP32 microcontroller to the temperature and light sensors, ac dimmer, and power supply.
-Program the ESP32: Use the Arduino IDE to load the code to the ESP8266 for device control and communication via MQTT.
+1. **Sensors**:
+   - The **DHT22** measures temperature and humidity.
+   - The **BH1750** measures ambient light intensity.
 
-Conclusion
-This smart home automation system is a fully functional IoT-based solution that automates temperature and light control in homes. With the ability to monitor and control devices remotely, the system ensures convenience, comfort, and energy efficiency.
+2. **Data Processing**:
+   - The ESP32 collects data from sensors.
+   - Sensor data is sent to the IoT platform via MQTT.
+
+3. **Actuation**:
+   - Users receive notifications if thresholds are crossed.
+   - Fans and lights are controlled manually through the Node-RED dashboard.
+
+4. **Communication**:
+   - MQTT protocol ensures seamless data exchange and control.
+
+---
+
+## Features 🌟
+
+- **Real-Time Monitoring**: View temperature, humidity, and light intensity levels.
+- **Manual Control**: Adjust fan speed and light brightness through the dashboard.
+- **Notifications**: Receive alerts when conditions exceed thresholds.
+- **Remote Access**: Control devices from anywhere using IoT platforms.
+- **Energy Efficiency**: Optimizes appliance usage to save energy.
+
+---
+
+## How to Use 🛠️
+
+1. **Set Up Hardware**:
+   - Connect sensors (DHT22, BH1750) and actuators (AC Dimmer) to the ESP32.
+   - Use Arduino Uno to manage light brightness control inputs.
+
+2. **Program the ESP32**:
+   - Write and upload the code using the Arduino IDE.
+
+3. **Configure Node-RED**:
+   - Create a web-based dashboard for monitoring and control.
+
+4. **Connect to IoT Platform**:
+   - Use MQTT to communicate between devices and the platform.
+
+---
+
+## Communication Protocols 📡
+
+- **MQTT**: Facilitates real-time data exchange between sensors, actuators, and the IoT platform.
+- **Node-RED**: Provides an interactive and intuitive dashboard for users.
+
+### Example MQTT Topics:
+
+| **Topic**               | **Purpose**                    |
+|-------------------------|--------------------------------|
+| `home/temperature`     | Publishes temperature data.    |
+| `home/light`           | Publishes light intensity.     |
+| `home/fan/control`     | Subscribes to fan commands.    |
+| `home/light/control`   | Subscribes to light commands.  |
+
+---
+
+## System Design and Functionality 🧩
+
+### 1. Temperature and Fan Control:
+- **Sensor**: DHT22 for temperature readings.
+- **Action**: Notify users if temperature exceeds threshold; manual fan speed adjustment via PWM.
+
+### 2. Light Control:
+- **Sensor**: BH1750 for ambient light measurement.
+- **Action**: Notify users if light drops below threshold; manual light brightness adjustment via PWM.
+
+---
+
+## Node-RED Dashboard 🖥️
+![Node-RED Dashboard](https://via.placeholder.com/800x400.png?text=Node-RED+Dashboard+Preview)
+
+- **Temperature & Humidity**: Real-time graphs and data.
+- **Light Levels**: Current ambient light intensity.
+- **Controls**: Buttons/sliders for fan speed and light brightness.
+
+---
+
+## Conclusion 🏁
+
+The **IoT-Based Home Automation System** offers a comprehensive solution for smart homes, providing:
+
+- **Convenience** through remote control.
+- **Comfort** with automated and manual adjustments.
+- **Energy Efficiency** by optimizing appliance usage.
+
+---
+
+> “Automate your home, embrace the future.” 🚀

@@ -130,16 +130,86 @@ The system comprises:
 - **Light Levels**: Current ambient light intensity.
 - **Controls**: Buttons/sliders for fan speed and light brightness.
 
+# ESP32 Environmental Monitoring and Control System
+### Software
+
+- Arduino IDE (with ESP32 Board Support installed).
+- Required Libraries:
+  - **Wire.h** (for I2C communication).
+  - **BH1750.h** (for light sensor control).
+  - **WiFi.h** (for WiFi connectivity).
+  - **PubSubClient.h** (for MQTT communication).
+  - **DHT.h** (for DHT sensor control).
+
 ---
 
-## Conclusion 🏁
+## Steps to Set Up
 
-The **IoT-Based Home Automation System** offers a comprehensive solution for smart homes, providing:
+### 1. Install Required Libraries
 
-- **Convenience** through remote control.
-- **Comfort** with automated and manual adjustments.
-- **Energy Efficiency** by optimizing appliance usage.
+Install the required libraries in the Arduino IDE:
 
----
+### 2. Configure the Code
+
+1. Open the provided code in the Arduino IDE.
+2. Update the following variables with your WiFi credentials:
+   ```cpp
+   const char* ssid = "Your_WiFi_SSID";
+   const char* password = "Your_WiFi_Password";
+
+
+### 3. Connect the Hardware
+
+#### Pin Connections:
+
+| Component       | ESP32 Pin |
+|------------------|-----------|
+| **BH1750 SDA**  | GPIO 5    |
+| **BH1750 SCL**  | GPIO 4    |
+| **DHT-22 Signal** | GPIO 15   |
+| **Fan Control** | GPIO 18   |
+
+### 4. Upload the Code
+
+1. Connect your ESP32 to your computer via a USB cable.
+2. Open the Arduino IDE and load the project code.
+3. Select the correct board and port:
+   - **Tools > Board > ESP32 Dev Module**.
+   - **Tools > Port > Select the appropriate COM port**.
+4. Click the **Upload** button to flash the code onto the ESP32.
+
+
+### 5. Monitor Serial Output
+
+1. Open the Serial Monitor in the Arduino IDE (**Tools > Serial Monitor**).
+2. Set the baud rate to **115200**.
+3. Check for the following messages:
+   - Successful WiFi connection.
+   - MQTT connection established.
+   - Sensor data being published to MQTT topics.
+
+
+### 6. Test MQTT Communication
+
+Use an MQTT client such as [MQTT.fx](https://mqttfx.jensd.de/), [MQTT Explorer](http://mqtt-explorer.com/), or an online dashboard to communicate with the ESP32.
+
+#### Topics and Messages:
+
+##### Subscribe:
+- **Topic:** `/SensorData/Environment`
+- **Data:** Environmental data (e.g., temperature, humidity, light intensity).
+
+##### Publish:
+- **Topic:** `/FanControl`
+  - **Message:** `1` (to turn the fan ON).
+  - **Message:** `2` (to turn the fan OFF).
+
+
+### 7. Light Control (Optional)
+
+- Use the MQTT topic to adjust light intensity.
+- **Topic:** `/LightControl`
+- **Message:** Send a value between `0` and `255` to control brightness
+
 
 > “Automate your home, embrace the future.” 🚀
